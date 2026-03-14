@@ -4,6 +4,12 @@ Este repositorio documenta mi proceso de aprendizaje y práctica hacia el área 
 
 Aquí desarrollo ejercicios y pequeños proyectos enfocados en el trabajo con datos, incluyendo consultas SQL, procesamiento de datos con Python y construcción de pipelines básicos.
 
+## Estructura
+
+- `sql/` consultas y ejercicios SQL
+- `python/` notebooks y scripts de procesamiento de datos
+- `projects/` datasets y mini proyectos
+
 ## Tecnologías
 
 - SQL

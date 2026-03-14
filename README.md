@@ -9,3 +9,14 @@ Tecnologías que estoy aplicando:
 - Cloud (BigQuery)
 
 Aquí subiré ejercicios, proyectos y pipelines de datos.
+
+## Ejercicios SQL
+
+Primer dataset de ventas para practicar consultas SQL.
+
+Consultas realizadas:
+
+- Crear tabla
+- Insertar datos
+- Agrupaciones con GROUP BY
+- Ordenamiento de resultados

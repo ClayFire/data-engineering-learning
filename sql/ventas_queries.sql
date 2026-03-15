@@ -1,3 +1,7 @@
+-- ========================================================================
+--               1. Preparación del entorno de Base de Datos
+-- ========================================================================
+
 -- Crear tabla de ventas
 CREATE TABLE ventas (
     id SERIAL PRIMARY KEY,
@@ -15,6 +19,10 @@ INSERT INTO ventas (cliente, producto, precio, fecha, region) VALUES
 ('Ana', 'Teclado', 50000, '2024-01-15', 'Santiago'),
 ('Maria', 'Laptop', 850000, '2024-01-20', 'Concepcion'),
 ('Pedro', 'Monitor', 200000, '2024-01-22', 'Valparaiso');
+
+-- ========================================================================
+--               2. Consultas de sondeo de Base de Datos
+-- ========================================================================
 
 -- Ver todas las ventas
 SELECT * FROM ventas;
@@ -35,11 +43,42 @@ FROM ventas_pipeline
 GROUP BY region
 ORDER BY total_ventas DESC;
 
+-- Producto más vendido de mayor a menor
+SELECT producto, COUNT(*) AS cantidad
+FROM ventas_pipeline
+GROUP BY producto
+ORDER BY cantidad DESC;
+
+-- Monto total de ventas por mes
+SELECT DATE_TRUNC('month', fecha) AS mes,
+SUM(precio) AS ventas
+FROM ventas_pipeline
+GROUP BY mes
+ORDER BY mes;
+
 -- Venta más cara
 SELECT *
 FROM ventas
 ORDER BY precio DESC
 LIMIT 1;
+
+-- Región que recolecta más dinero
+SELECT region, SUM(precio) AS total_ventas
+FROM ventas_pipeline
+GROUP BY region
+ORDER BY total_ventas DESC;
+
+-- Producto más vendido
+SELECT producto, COUNT(*) AS cantidad_vendida
+FROM ventas_pipeline
+GROUP BY producto
+ORDER BY cantidad_vendida DESC;
+
+-- Cliente que más dinero gastó
+SELECT cliente, SUM(precio) AS total_gastado
+FROM ventas_pipeline
+GROUP BY cliente
+ORDER BY total_gastado DESC;
 
 -- Anula registros duplicados al querer insertar uno que ya existe
 ALTER TABLE ventas_pipeline

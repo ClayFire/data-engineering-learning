@@ -34,3 +34,8 @@ SELECT *
 FROM ventas
 ORDER BY precio DESC
 LIMIT 1;
+
+-- Anula registros duplicados al querer insertar uno que ya existe
+ALTER TABLE ventas_pipeline
+ADD CONSTRAINT unique_venta
+UNIQUE (cliente, producto, fecha);

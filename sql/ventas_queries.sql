@@ -29,6 +29,12 @@ SELECT region, COUNT(*)
 FROM ventas
 GROUP BY region;
 
+-- Cantidad de ventas por región de mayor a menor monto
+SELECT region, SUM(precio) AS total_ventas
+FROM ventas_pipeline
+GROUP BY region
+ORDER BY total_ventas DESC;
+
 -- Venta más cara
 SELECT *
 FROM ventas

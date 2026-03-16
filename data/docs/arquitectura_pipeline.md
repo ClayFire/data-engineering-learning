@@ -1,27 +1,42 @@
 # Arquitectura del Pipeline de Ventas
 
-Este proyecto implementa un pipeline ETL simple utilizando Python y PostgreSQL.
+## Descripción
 
-## Flujo de datos
+Este proyecto implementa un pipeline de datos simple para analizar ventas utilizando Python, PostgreSQL y SQL.
 
-CSV → Python (pandas) → PostgreSQL → SQL Analytics
+El objetivo es transformar datos de ventas en insights que permitan entender el comportamiento de clientes, productos y regiones.
 
-## Etapas del pipeline
+## Flujo del pipeline
 
-### 1. Extract
-Se carga el dataset de ventas desde un archivo CSV.
+CSV > Python (librería pandas) > PostgreSQL > SQL Analytics
 
-### 2. Transform
-Se limpian y normalizan los datos usando pandas.
+## 1. Extract
+ - Se carga un archivo CSV con registros de ventas.
 
-### 3. Load
-Los datos transformados se insertan en la tabla `ventas_pipeline` en PostgreSQL.
+## 2. Transform
+   - Se limpian y normalizan los datos con pandas.
 
-## Consultas analíticas
+## 3. Load
+   - Los datos se insertan en la tabla `ventas_pipeline` en PostgreSQL.
 
-El archivo `sql/ventas_queries.sql` contiene consultas para analizar:
+## 4. Analyze
+   - Se ejecutan consultas SQL para generar insights de negocio.
 
-- ventas por región
-- productos más vendidos
-- ranking de clientes
-- ventas por mes
+## Dataset
+
+El dataset contiene información de ventas con las siguientes columnas:
+
+- cliente
+- producto
+- precio
+- region
+- fecha
+
+## Objetivo del análisis
+
+Responder preguntas de negocio como:
+
+- ¿Qué regiones generan más ingresos?
+- ¿Qué productos son los más vendidos?
+- ¿Qué clientes generan más valor?
+- ¿Cómo evolucionan las ventas a lo largo del tiempo?

@@ -37,3 +37,19 @@ Consultas realizadas:
 * inserción de datos
 * agregaciones con `GROUP BY`
 * ordenamiento de resultados
+
+## Insights del análisis de ventas
+
+A partir de las consultas SQL realizadas sobre la tabla `ventas_pipeline`, se obtuvieron los siguientes hallazgos:
+
+### 1. Distribución de ingresos por región
+
+El análisis de ventas por región muestra qué mercados generan mayor volumen de ingresos para la empresa.
+
+Consulta utilizada:
+
+```sql
+SELECT region, SUM(precio) AS total_ventas
+FROM ventas_pipeline
+GROUP BY region
+ORDER BY total_ventas DESC;

@@ -135,3 +135,12 @@ GROUP BY region
 ORDER BY total_ventas DESC;
 
 
+## Cómo ejecutar el proyecto
+
+1. Clonar el repositorio a través de su link: https://github.com/tu_usuario/data-engineering-learning.git
+
+2. Instalar dependencias de Python: pip install pandas psycopg2-binary
+
+3. Crear la tabla en PostgreSQL: Ejecutar el script SQL correspondiente en la base de datos.
+
+4. Ejecutar el script de carga de datos: python python/cargar_ventas_postgres.py (esto cargará los datos del CSV en la tabla `ventas_pipeline`.)

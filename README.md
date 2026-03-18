@@ -1,132 +1,130 @@
 # Data Engineering Learning
 
-Repositorio donde documento mi proceso de aprendizaje y práctica orientado al área de **Data Engineering**.
+Repositorio donde documento mi proceso de aprendizaje orientado al área de **Data Engineering**.
 
-La idea de este repositorio es ir construyendo distintos ejercicios y mini proyectos relacionados con el trabajo con datos, incluyendo consultas SQL, procesamiento de datos con Python y construcción de pipelines simples.
+Este repositorio reúne ejercicios y mini proyectos enfocados en el trabajo con datos, incluyendo consultas SQL, procesamiento con Python y construcción de pipelines simples.
 
-Muchos de los ejercicios simulan pequeños escenarios que se pueden encontrar en entornos reales de análisis o ingeniería de datos.
+Los ejercicios están diseñados para simular escenarios reales que pueden encontrarse en entornos de análisis e ingeniería de datos.
+
+---
 
 ## Tecnologías utilizadas
 
-Este repositorio utiliza herramientas muy comunes dentro del ecosistema de datos.
+Este repositorio utiliza herramientas ampliamente utilizadas en el ecosistema de datos.
 
 ### Python
 
-Python se utiliza para implementar procesos de **ETL (Extract, Transform, Load)** dentro de los pipelines de datos.
+Python se utiliza para implementar procesos de **ETL (Extract, Transform, Load)** dentro de los pipelines.
 
-En este proyecto Python permite:
+En este proyecto permite:
 
 - leer datasets desde archivos CSV
 - limpiar y transformar datos
-- automatizar la carga de información hacia una base de datos
-- preparar datos para su posterior análisis
+- automatizar la carga hacia una base de datos
+- preparar datos para análisis posterior
 
-Se utilizan principalmente las librerías:
+Librerías utilizadas:
 
 - `pandas` para manipulación de datos
-- `psycopg2` para conectarse a PostgreSQL
+- `psycopg2` para conexión con PostgreSQL
 
-Python es una de las herramientas más utilizadas en **Data Engineering** debido a su flexibilidad para trabajar con diferentes fuentes de datos.
+---
 
 ### PostgreSQL
 
-PostgreSQL se utiliza como motor de base de datos para almacenar y consultar la información.
+PostgreSQL se utiliza como sistema de almacenamiento y consulta de datos.
 
 Se eligió porque:
 
-- es uno de los motores relacionales más utilizados en entornos profesionales
-- permite realizar consultas analíticas complejas
-- es ampliamente usado en pipelines de datos y sistemas analíticos
-- es open source y muy robusto
+- es ampliamente utilizado en entornos profesionales
+- permite consultas analíticas complejas
+- es robusto y open source
 
-En este repositorio se utiliza PostgreSQL para almacenar los datos del pipeline y ejecutar consultas SQL analíticas.
+En este proyecto actúa como base de datos del pipeline y del modelo analítico.
+
+---
 
 ### DBeaver
 
-DBeaver se utiliza como cliente de base de datos para interactuar con PostgreSQL.
+DBeaver se utiliza como cliente para interactuar con la base de datos.
 
 Permite:
 
 - ejecutar consultas SQL
 - explorar tablas
 - visualizar resultados
-- administrar la base de datos
 
-Es una herramienta bastante común entre **analistas de datos, BI developers y data engineers**.
+---
 
 ## Arquitectura del pipeline
 
-El proyecto implementa un pipeline de datos simple con el siguiente flujo:
+El pipeline implementado sigue un flujo simple:
 
-CSV > Python (con librería pandas) > PostgreSQL > SQL Analytics
+CSV > Python (librería pandas) > PostgreSQL > SQL Analytics
 
-### Etapas del pipeline
 
-**1. Extract**
+### Etapas
 
-Se carga un dataset de ventas desde un archivo CSV utilizando Python.
+**1. Extract**  
+Carga de datos desde un archivo CSV.
 
-**2. Transform**
+**2. Transform**  
+Limpieza y normalización de datos con `pandas`.
 
-Los datos son limpiados y normalizados utilizando `pandas` para asegurar consistencia en las columnas.
+**3. Load**  
+Inserción de datos en PostgreSQL mediante `psycopg2`.
 
-**3. Load**
+**4. Analyze**  
+Ejecución de consultas SQL para obtener insights.
 
-Los datos transformados se insertan en una tabla de PostgreSQL utilizando la librería `psycopg2`.
-
-**4. Analyze**
-
-Finalmente se ejecutan consultas SQL para generar insights a partir de los datos almacenados.
+---
 
 ## Proyecto: Pipeline de Ventas
 
-Como primer mini proyecto se construyó un pipeline simple para analizar un dataset de ventas.
-
-El objetivo es simular un flujo básico de datos similar al que podría existir en un sistema real de análisis.
+Se construyó un pipeline simple utilizando un dataset de ventas para simular un flujo real de datos.
 
 El proceso consiste en:
 
-1. Cargar datos desde un archivo CSV
-2. Limpiar los datos utilizando Python
-3. Insertar los datos en PostgreSQL
-4. Ejecutar consultas SQL para analizarlos
+1. cargar datos desde CSV  
+2. transformarlos con Python  
+3. almacenarlos en PostgreSQL (`ventas_pipeline`)  
+4. analizarlos con SQL  
 
-El dataset contiene las siguientes columnas:
+### Dataset
 
-- cliente
-- producto
-- precio
-- region
-- fecha
+Columnas utilizadas:
+
+- cliente  
+- producto  
+- precio  
+- region  
+- fecha  
+
+---
 
 ## Consultas SQL realizadas
 
-Las consultas incluidas en el proyecto abarcan distintos tipos de análisis:
+Las consultas abarcan distintos tipos de análisis:
 
-- exploración de datos
-- agregaciones con `GROUP BY`
-- análisis de ventas
-- análisis por región
-- análisis de clientes
-- métricas de negocio
+- exploración de datos  
+- agregaciones con `GROUP BY`  
+- análisis por región, producto y cliente  
+- métricas de negocio  
 
-Algunos ejemplos de análisis realizados:
+Archivo:
 
-- ventas totales por región
-- productos más vendidos
-- clientes que más gastan
-- ticket promedio de compra
-- evolución de ventas en el tiempo
+sql/ventas_queries.sql
 
-Todas las consultas se encuentran en: sql/ventas_queries.sql
+
+---
 
 ## Insights del análisis de ventas
 
-A partir de las consultas SQL realizadas sobre la tabla `ventas_pipeline` se pueden obtener distintos insights sobre el comportamiento de las ventas.
+A partir de las consultas sobre `ventas_pipeline` se pueden obtener distintos insights.
 
-### 1. Distribución de ingresos por región
+### Distribución de ingresos por región
 
-Este análisis permite identificar qué regiones generan mayor volumen de ingresos.
+Permite identificar qué regiones generan mayor volumen de ingresos.
 
 ```sql
 SELECT region, SUM(precio) AS total_ventas
@@ -135,12 +133,65 @@ GROUP BY region
 ORDER BY total_ventas DESC;
 
 
+---
+
+
 ## Cómo ejecutar el proyecto
 
-1. Clonar el repositorio a través de su link: https://github.com/tu_usuario/data-engineering-learning.git
+1. Clonar el repositorio
 
-2. Instalar dependencias de Python: pip install pandas psycopg2-binary
+git clone https://github.com/tu_usuario/data-engineering-learning.git
 
-3. Crear la tabla en PostgreSQL: Ejecutar el script SQL correspondiente en la base de datos.
+2. Instalar dependencias 
 
-4. Ejecutar el script de carga de datos: python python/cargar_ventas_postgres.py (esto cargará los datos del CSV en la tabla `ventas_pipeline`.)
+pip install pandas psycopg2-binary
+
+3. Crear tabla en PostgreSQL (ejecutar scripts correspondientes)
+
+4. Ejecuta la carga de datos
+
+python python/cargar_ventas_postgres.py
+
+
+---
+
+
+## Data Warehouse – Modelo Estrella
+
+Para mejorar el análisis, los datos fueron transformados desde ventas_pipeline a un modelo dimensional tipo estrella.
+
+Este modelo es ampliamente utilizado en Data Warehouses porque:
+
+- optimiza consultas analíticas
+
+- separa métricas de dimensiones
+
+- evita duplicidad de información
+
+
+---
+
+
+## Estructura del modelo
+
+Tabla de hechos:
+
+fact_ventas
+
+Contiene la métrica principal (precio) y las claves hacia las dimensiones.
+
+
+---
+
+
+## Tablas de dimensiones
+
+dim_cliente
+
+dim_producto
+
+dim_region
+
+dim_fecha
+
+Permiten analizar los datos desde distintas perspectivas.

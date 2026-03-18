@@ -186,12 +186,60 @@ Contiene la métrica principal (precio) y las claves hacia las dimensiones.
 
 ## Tablas de dimensiones
 
-dim_cliente
-
-dim_producto
-
-dim_region
-
-dim_fecha
+- dim_cliente
+- dim_producto
+- dim_region
+- dim_fecha
 
 Permiten analizar los datos desde distintas perspectivas.
+
+
+---
+
+
+## Relación del modelo
+
+                 dim_cliente
+                      |
+                      |
+dim_producto ---- fact_ventas ---- dim_region
+                      |
+                      |
+                  dim_fecha
+
+
+---
+
+
+## Consultas analíticas del Data Warehouse
+
+Una vez construido el modelo, se realizaron consultas analíticas más estructuradas.
+
+Archivo:
+
+sql/data_warehouse/warehouse_queries.sql
+
+Ejemplos:
+
+- ventas por región
+- ranking de productos
+- clientes con mayor gasto
+- tendencias mensuales
+- ticket promedio
+
+
+---
+
+
+## Ejemplo de consulta
+
+Ventas totales por región:
+
+SELECT
+    r.region_nombre,
+    SUM(f.precio) AS total_ventas
+FROM fact_ventas f
+JOIN dim_region r ON f.region_id = r.region_id
+GROUP BY r.region_nombre
+ORDER BY total_ventas DESC;
+

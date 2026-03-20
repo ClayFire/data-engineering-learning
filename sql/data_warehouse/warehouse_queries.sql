@@ -7,10 +7,8 @@ SELECT
     r.region_nombre,
     SUM(f.precio) AS total_ventas
 FROM fact_ventas f
-
 JOIN dim_region r
 ON f.region_id = r.region_id
-
 GROUP BY r.region_nombre
 ORDER BY total_ventas DESC;
 
@@ -24,10 +22,8 @@ SELECT
     p.producto_nombre,
     COUNT(*) AS cantidad_vendida
 FROM fact_ventas f
-
 JOIN dim_producto p
-ON f.producto_id = p.producto_id
-
+    ON f.producto_id = p.producto_id
 GROUP BY p.producto_nombre
 ORDER BY cantidad_vendida DESC;
 
@@ -93,3 +89,80 @@ ON f.region_id = r.region_id
 
 GROUP BY p.producto_nombre, r.region_nombre
 ORDER BY total_ventas DESC;
+
+
+-- Ticket promedio por cliente
+
+SELECT
+    c.cliente_nombre,
+    COUNT(*) AS cantidad_compras,
+    SUM(f.precio) AS total_gastado,
+    ROUND(AVG(f.precio), 2) AS ticket_promedio
+FROM fact_ventas f
+JOIN dim_cliente c ON f.cliente_id = c.cliente_id
+GROUP BY c.cliente_nombre
+ORDER BY total_gastado DESC;
+
+
+-- Ventas por mes con crecimiento
+
+SELECT
+    d.anio,
+    d.mes,
+    SUM(f.precio) AS ventas_mes
+FROM fact_ventas f
+JOIN dim_fecha d ON f.fecha_id = d.fecha_id
+GROUP BY d.anio, d.mes
+ORDER BY d.anio, d.mes;
+
+
+-- Top productos por región
+
+SELECT
+    r.region_nombre,
+    p.producto_nombre,
+    COUNT(*) AS cantidad_vendida
+FROM fact_ventas f
+JOIN dim_region r ON f.region_id = r.region_id
+JOIN dim_producto p ON f.producto_id = p.producto_id
+GROUP BY r.region_nombre, p.producto_nombre
+ORDER BY cantidad_vendida DESC;
+
+
+-- Participación de ventas por región (%)
+
+SELECT
+    r.region_nombre,
+    SUM(f.precio) AS total_ventas,
+    ROUND(
+        SUM(f.precio) * 100.0 / SUM(SUM(f.precio)) OVER (),
+        2
+    ) AS porcentaje_participacion
+FROM fact_ventas f
+JOIN dim_region r ON f.region_id = r.region_id
+GROUP BY r.region_nombre
+ORDER BY total_ventas DESC;
+
+
+-- Cliente más importante por región
+
+SELECT
+    region_nombre,
+    cliente_nombre,
+    total_gastado
+FROM (
+    SELECT
+        r.region_nombre,
+        c.cliente_nombre,
+        SUM(f.precio) AS total_gastado,
+        ROW_NUMBER() OVER (
+            PARTITION BY r.region_nombre
+            ORDER BY SUM(f.precio) DESC
+        ) AS ranking
+    FROM fact_ventas f
+    JOIN dim_region r ON f.region_id = r.region_id
+    JOIN dim_cliente c ON f.cliente_id = c.cliente_id
+    GROUP BY r.region_nombre, c.cliente_nombre
+) sub
+WHERE ranking = 1;
+

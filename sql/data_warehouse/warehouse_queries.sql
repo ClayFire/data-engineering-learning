@@ -47,16 +47,13 @@ ORDER BY total_gastado DESC;
 -- Ventas mensuales
 
 -- Permite ver tendencias de ventas en el tiempo.
---  REVISAR CODIGO AQUÍ
 SELECT
     f2.anio,
     f2.mes,
     SUM(f.precio) AS total_ventas
 FROM fact_ventas f
-
 JOIN dim_fecha f2
-ON f.fecha_id = f2.fecha_id
-
+    ON f.fecha_id = f2.fecha_id
 GROUP BY f2.anio, f2.mes
 ORDER BY f2.anio, f2.mes;
 
@@ -80,13 +77,10 @@ SELECT
     r.region_nombre,
     SUM(f.precio) AS total_ventas
 FROM fact_ventas f
-
 JOIN dim_producto p
-ON f.producto_id = p.producto_id
-
+    ON f.producto_id = p.producto_id
 JOIN dim_region r
-ON f.region_id = r.region_id
-
+    ON f.region_id = r.region_id
 GROUP BY p.producto_nombre, r.region_nombre
 ORDER BY total_ventas DESC;
 

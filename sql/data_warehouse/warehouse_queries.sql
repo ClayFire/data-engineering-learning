@@ -47,7 +47,7 @@ ORDER BY total_gastado DESC;
 -- Ventas mensuales
 
 -- Permite ver tendencias de ventas en el tiempo.
-
+--  REVISAR CODIGO AQUÍ
 SELECT
     f2.anio,
     f2.mes,

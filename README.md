@@ -1,204 +1,42 @@
-# Data Engineering Learning
+# Data Engineering End-to-End Pipeline & Data Warehouse
 
-Repositorio donde documento mi proceso de aprendizaje orientado al área de **Data Engineering**.
+Bienvenido a mi portafolio de Ingeniería de Datos. Este repositorio simula un entorno real de procesamiento de datos, desde la ingesta de archivos planos hasta la construcción de un Data Warehouse modelado para Inteligencia de Negocios (BI).
 
-Este repositorio reúne ejercicios y mini proyectos enfocados en el trabajo con datos, incluyendo consultas SQL, procesamiento con Python y construcción de pipelines simples.
-
-Los ejercicios están diseñados para simular escenarios reales que pueden encontrarse en entornos de análisis e ingeniería de datos.
+El objetivo principal de este proyecto es demostrar dominio en la creación de pipelines **robustos, seguros e idempotentes**, orientados a resolver preguntas de negocio.
 
 ---
 
-## Tecnologías utilizadas
+## Tecnologías y Arquitectura
 
-Este repositorio utiliza herramientas ampliamente utilizadas en el ecosistema de datos.
+El pipeline sigue un flujo clásico de **ETL (Extract, Transform, Load)**:
 
-### Python
+**`CSV`** > **`Python (Pandas)`** > **`PostgreSQL`** > **`SQL Analytics`**
 
-Python se utiliza para implementar procesos de **ETL (Extract, Transform, Load)** dentro de los pipelines.
-
-En este proyecto permite:
-
-- leer datasets desde archivos CSV
-- limpiar y transformar datos
-- automatizar la carga hacia una base de datos
-- preparar datos para análisis posterior
-
-Librerías utilizadas:
-
-- `pandas` para manipulación de datos
-- `psycopg2` para conexión con PostgreSQL
+* **Python:** Extracción, limpieza y transformación de datos.
+* **Pandas:** Manipulación de DataFrames y normalización.
+* **PostgreSQL:** Motor de base de datos relacional y Data Warehouse.
+* **Psycopg2:** Conector entre Python y la base de datos.
+* **Dotenv:** Gestión de variables de entorno para seguridad.
+* **DBeaver:** Cliente SQL para análisis exploratorio.
 
 ---
 
-### PostgreSQL
+## Características Nivel Producción (Enterprise-Grade)
 
-PostgreSQL se utiliza como sistema de almacenamiento y consulta de datos.
+A diferencia de un script básico, este pipeline incorpora buenas prácticas de la industria:
 
-Se eligió porque:
-
-- es ampliamente utilizado en entornos profesionales
-- permite consultas analíticas complejas
-- es robusto y open source
-
-En este proyecto actúa como base de datos del pipeline y del modelo analítico.
+1.  **Seguridad (Gestión de Credenciales):** Las contraseñas y datos de conexión están aislados mediante variables de entorno (`.env`), evitando la exposición de datos sensibles en el código fuente.
+2.  **Idempotencia (UPSERT):** El proceso de carga utiliza `ON CONFLICT DO UPDATE`. El pipeline puede ejecutarse 1 o 100 veces sin generar registros duplicados, asegurando la integridad de los datos.
+3.  **Tolerancia a Fallos:** Implementación de bloques `try-except-finally` con `rollback` automático en PostgreSQL para evitar transacciones corruptas si el flujo se interrumpe.
+4.  **Modelado Dimensional:** Los datos crudos se transforman en un **Modelo Estrella (Star Schema)** para optimizar las consultas analíticas.
 
 ---
 
-### DBeaver
+## Data Warehouse: Modelo Estrella
 
-DBeaver se utiliza como cliente para interactuar con la base de datos.
+Para facilitar el análisis a los equipos de BI, los datos transaccionales se modelaron separando las métricas de sus contextos:
 
-Permite:
-
-- ejecutar consultas SQL
-- explorar tablas
-- visualizar resultados
-
----
-
-## Arquitectura del pipeline
-
-El pipeline implementado sigue un flujo simple:
-
-CSV > Python (librería pandas) > PostgreSQL > SQL Analytics
-
-
-### Etapas
-
-**1. Extract**  
-Carga de datos desde un archivo CSV.
-
-**2. Transform**  
-Limpieza y normalización de datos con `pandas`.
-
-**3. Load**  
-Inserción de datos en PostgreSQL mediante `psycopg2`.
-
-**4. Analyze**  
-Ejecución de consultas SQL para obtener insights.
-
----
-
-## Proyecto: Pipeline de Ventas
-
-Se construyó un pipeline simple utilizando un dataset de ventas para simular un flujo real de datos.
-
-El proceso consiste en:
-
-1. cargar datos desde CSV  
-2. transformarlos con Python  
-3. almacenarlos en PostgreSQL (`ventas_pipeline`)  
-4. analizarlos con SQL  
-
-### Dataset
-
-Columnas utilizadas:
-
-- cliente  
-- producto  
-- precio  
-- region  
-- fecha  
-
----
-
-## Consultas SQL realizadas
-
-Las consultas abarcan distintos tipos de análisis:
-
-- exploración de datos  
-- agregaciones con `GROUP BY`  
-- análisis por región, producto y cliente  
-- métricas de negocio  
-
-Archivo:
-
-sql/ventas_queries.sql
-
-
----
-
-## Insights del análisis de ventas
-
-A partir de las consultas sobre `ventas_pipeline` se pueden obtener distintos insights.
-
-### Distribución de ingresos por región
-
-Permite identificar qué regiones generan mayor volumen de ingresos.
-
-```sql
-SELECT region, SUM(precio) AS total_ventas
-FROM ventas_pipeline
-GROUP BY region
-ORDER BY total_ventas DESC;
-
-
----
-
-
-## Cómo ejecutar el proyecto
-
-1. Clonar el repositorio
-
-git clone https://github.com/tu_usuario/data-engineering-learning.git
-
-2. Instalar dependencias 
-
-pip install pandas psycopg2-binary
-
-3. Crear tabla en PostgreSQL (ejecutar scripts correspondientes)
-
-4. Ejecuta la carga de datos
-
-python python/cargar_ventas_postgres.py
-
-
----
-
-
-## Data Warehouse – Modelo Estrella
-
-Para mejorar el análisis, los datos fueron transformados desde ventas_pipeline a un modelo dimensional tipo estrella.
-
-Este modelo es ampliamente utilizado en Data Warehouses porque:
-
-- optimiza consultas analíticas
-
-- separa métricas de dimensiones
-
-- evita duplicidad de información
-
-
----
-
-
-## Estructura del modelo
-
-Tabla de hechos:
-
-fact_ventas
-
-Contiene la métrica principal (precio) y las claves hacia las dimensiones.
-
-
----
-
-
-## Tablas de dimensiones
-
-- dim_cliente
-- dim_producto
-- dim_region
-- dim_fecha
-
-Permiten analizar los datos desde distintas perspectivas.
-
-
----
-
-
-## Relación del modelo
-
+```text
                  dim_cliente
                       |
                       |
@@ -207,33 +45,14 @@ dim_producto ---- fact_ventas ---- dim_region
                       |
                   dim_fecha
 
-
 ---
 
+## Business Insights (Análisis SQL)
 
-## Consultas analíticas del Data Warehouse
+El modelo construido permite responder rápidamente a preguntas críticas de negocio.
 
-Una vez construido el modelo, se realizaron consultas analíticas más estructuradas.
-
-Archivo:
-
-sql/data_warehouse/warehouse_queries.sql
-
-Ejemplos:
-
-- ventas por región
-- ranking de productos
-- clientes con mayor gasto
-- tendencias mensuales
-- ticket promedio
-
-
----
-
-
-## Ejemplo de consulta
-
-Ventas totales por región:
+Ejemplo: Penetración de Mercado Regional
+Identifica qué regiones generan el mayor volumen de ingresos para priorizar esfuerzos logísticos y de marketing.
 
 SELECT
     r.region_nombre,
@@ -243,3 +62,33 @@ JOIN dim_region r ON f.region_id = r.region_id
 GROUP BY r.region_nombre
 ORDER BY total_ventas DESC;
 
+---
+
+## Cómo ejecutar este proyecto localmente
+Si deseas clonar y probar este pipeline en tu máquina, sigue estos pasos:
+
+1. Clonar el repositorio
+
+Bash
+git clone [https://github.com/tu_usuario/data-engineering-learning.git](https://github.com/tu_usuario/data-engineering-learning.git)
+cd data-engineering-learning
+
+2. Instalar dependencias
+
+Bash
+pip install pandas psycopg2 python-dotenv
+
+3. Configurar variables de entorno (Seguridad)
+Crea un archivo llamado .env en la raíz del proyecto y añade tus credenciales locales de PostgreSQL:
+
+Fragmento de código
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=tu_base_de_datos
+DB_USER=tu_usuario
+DB_PASSWORD=tu_contraseña
+
+4. Ejecutar el Pipeline ETL
+
+Bash
+python python/cargar_ventas_postgres.py

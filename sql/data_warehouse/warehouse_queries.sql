@@ -160,3 +160,33 @@ FROM (
 ) sub
 WHERE ranking = 1;
 
+-- Análisis de Crecimiento Mes a Mes (MoM) usando Window Functions
+
+-- 1. CTE: Calculamos el total de ingresos por cada mes
+WITH VentasMensuales AS (
+    SELECT 
+        EXTRACT(YEAR FROM d.fecha) AS anio,
+        EXTRACT(MONTH FROM d.fecha) AS mes,
+        SUM(f.precio) AS ingresos_actuales
+    FROM fact_ventas f
+    JOIN dim_fecha d ON f.fecha_id = d.fecha_id
+    GROUP BY 
+        EXTRACT(YEAR FROM d.fecha),
+        EXTRACT(MONTH FROM d.fecha)
+)
+
+-- 2. Window Function: Comparamos el mes actual con el anterior
+SELECT 
+    anio,
+    mes,
+    ingresos_actuales,
+    LAG(ingresos_actuales) OVER (ORDER BY anio, mes) AS ingresos_mes_anterior,
+    
+    -- ::numeric asegura que PostgreSQL respete los decimales
+    ROUND(
+        ( (ingresos_actuales - LAG(ingresos_actuales) OVER (ORDER BY anio, mes))::numeric * 100.0 ) / 
+        LAG(ingresos_actuales) OVER (ORDER BY anio, mes)::numeric
+    , 2) AS porcentaje_crecimiento
+    
+FROM VentasMensuales
+ORDER BY anio, mes;

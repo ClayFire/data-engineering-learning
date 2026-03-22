@@ -89,6 +89,6 @@ DB_USER=tu_usuario
 DB_PASSWORD=tu_contraseña
 
 4. Ejecutar el Pipeline ETL
-
-Bash
-python python/cargar_ventas_postgres.py
+Para ejecutar el proceso completo, tienes dos opciones:
+* **Automatizado (Windows):** Haz doble clic en el archivo `run_pipeline.bat`.
+* **Manual (Terminal):** Ejecuta `python python/cargar_ventas_postgres.py`.

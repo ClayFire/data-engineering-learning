@@ -1,41 +1,41 @@
-"cliente,producto,precio,region,fecha"
-"Ana,Laptop,900000,Santiago,2024-01-10"
-"Pedro,Mouse,20000,Valparaiso,2024-01-12"
-"Ana,Teclado,50000,Santiago,2024-01-15"
-"Maria,Laptop,850000,Concepcion,2024-01-20"
-"Pedro,Monitor,200000,Valparaiso,2024-01-22"
-"Sofia,Mouse,22000,Santiago,2024-01-25"
-"Diego,Laptop,870000,Santiago,2024-01-28"
-"Laura,Teclado,48000,La Serena,2024-02-02"
-"Carlos,Mouse,21000,Santiago,2024-02-03"
-"Valentina,Monitor,210000,Concepcion,2024-02-05"
-"Javier,Laptop,910000,Santiago,2024-02-07"
-"Camila,Mouse,20000,Valparaiso,2024-02-08"
-"Felipe,Teclado,53000,Temuco,2024-02-10"
-"Andrea,Laptop,880000,Santiago,2024-02-12"
-"Rodrigo,Monitor,195000,Antofagasta,2024-02-15"
-"Daniela,Mouse,23000,La Serena,2024-02-16"
-"Nicolas,Laptop,905000,Santiago,2024-02-18"
-"Fernanda,Teclado,52000,Valdivia,2024-02-20"
-"Sebastian,Monitor,205000,Santiago,2024-02-22"
-"Paula,Mouse,21000,Concepcion,2024-02-23"
-"Gabriel,Laptop,870000,Temuco,2024-02-25"
-"Isidora,Mouse,22000,Santiago,2024-02-26"
-"Cristian,Teclado,51000,Valparaiso,2024-02-28"
-"Patricia,Monitor,215000,La Serena,2024-03-01"
-"Esteban,Laptop,890000,Santiago,2024-03-03"
-"Claudia,Mouse,20000,Antofagasta,2024-03-04"
-"Hector,Teclado,54000,Temuco,2024-03-06"
-"Carolina,Laptop,915000,Santiago,2024-03-07"
-"Matias,Monitor,198000,Valdivia,2024-03-08"
-"Ignacio,Mouse,21000,Santiago,2024-03-10"
-"Lorena,Teclado,49500,Concepcion,2024-03-11"
-"Pablo,Laptop,875000,Valparaiso,2024-03-12"
-"Constanza,Monitor,220000,Santiago,2024-03-14"
-"Ricardo,Mouse,22500,Temuco,2024-03-15"
-"Antonia,Teclado,50000,La Serena,2024-03-16"
-"Alvaro,Laptop,905000,Santiago,2024-03-18"
-"Veronica,Monitor,210000,Antofagasta,2024-03-19"
-"Martin,Mouse,21500,Valdivia,2024-03-20"
-"Catalina,Teclado,52500,Santiago,2024-03-22"
-"Tomas,Laptop,890000,Concepcion,2024-03-23"
+cliente,producto,precio,region,fecha
+Ana,Laptop,900000,Santiago,2024-01-10
+Pedro,Mouse,20000,Valparaiso,2024-01-12
+Ana,Teclado,50000,Santiago,2024-01-15
+Maria,Laptop,850000,Concepcion,2024-01-20
+Pedro,Monitor,200000,Valparaiso,2024-01-22
+Sofia,Mouse,22000,Santiago,2024-01-25
+Diego,Laptop,870000,Santiago,2024-01-28
+Laura,Teclado,48000,La Serena,2024-02-02
+Carlos,Mouse,21000,Santiago,2024-02-03
+Valentina,Monitor,210000,Concepcion,2024-02-05
+Javier,Laptop,910000,Santiago,2024-02-07
+Camila,Mouse,20000,Valparaiso,2024-02-08
+Felipe,Teclado,53000,Temuco,2024-02-10
+Andrea,Laptop,880000,Santiago,2024-02-12
+Rodrigo,Monitor,195000,Antofagasta,2024-02-15
+Daniela,Mouse,23000,La Serena,2024-02-16
+Nicolas,Laptop,905000,Santiago,2024-02-18
+Fernanda,Teclado,52000,Valdivia,2024-02-20
+Sebastian,Monitor,205000,Santiago,2024-02-22
+Paula,Mouse,21000,Concepcion,2024-02-23
+Gabriel,Laptop,870000,Temuco,2024-02-25
+Isidora,Mouse,22000,Santiago,2024-02-26
+Cristian,Teclado,51000,Valparaiso,2024-02-28
+Patricia,Monitor,215000,La Serena,2024-03-01
+Esteban,Laptop,890000,Santiago,2024-03-03
+Claudia,Mouse,20000,Antofagasta,2024-03-04
+Hector,Teclado,54000,Temuco,2024-03-06
+Carolina,Laptop,915000,Santiago,2024-03-07
+Matias,Monitor,198000,Valdivia,2024-03-08
+Ignacio,Mouse,21000,Santiago,2024-03-10
+Lorena,Teclado,49500,Concepcion,2024-03-11
+Pablo,Laptop,875000,Valparaiso,2024-03-12
+Constanza,Monitor,220000,Santiago,2024-03-14
+Ricardo,Mouse,22500,Temuco,2024-03-15
+Antonia,Teclado,50000,La Serena,2024-03-16
+Alvaro,Laptop,905000,Santiago,2024-03-18
+Veronica,Monitor,210000,Antofagasta,2024-03-19
+Martin,Mouse,21500,Valdivia,2024-03-20
+Catalina,Teclado,52500,Santiago,2024-03-22
+Tomas,Laptop,890000,Concepcion,2024-03-23

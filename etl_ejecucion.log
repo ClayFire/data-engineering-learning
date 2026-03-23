@@ -1,0 +1,26 @@
+2026-03-22 22:48:37 - [INFO] - Iniciando extracción y transformación de datos...
+2026-03-22 22:48:37 - [ERROR] - Error crítico durante el proceso: [Errno 2] No such file or directory: 'C:\\Users\\USUARIO\\Desktop\\data-engineering-learning\\data\\docs\\ventas_pipeline.csv'
+2026-03-22 22:50:18 - [INFO] - Iniciando extracción y transformación de datos...
+2026-03-22 22:50:18 - [INFO] - Archivo CSV leído correctamente. Filas procesadas: 40
+2026-03-22 22:50:18 - [INFO] - Conexión a PostgreSQL exitosa y segura.
+2026-03-22 22:50:18 - [ERROR] - Error crítico durante el proceso: 'cliente'
+2026-03-22 22:50:18 - [WARNING] - Se realizó un rollback de la transacción para proteger la base de datos.
+2026-03-22 22:50:18 - [INFO] - Conexión a la base de datos cerrada limpiamente.
+--------------------------------------------------
+2026-03-22 22:53:45 - [INFO] - Iniciando extracción y transformación de datos...
+2026-03-22 22:53:45 - [INFO] - Archivo CSV leído y transformado correctamente. Filas procesadas: 40
+2026-03-22 22:53:45 - [INFO] - Conexión a PostgreSQL exitosa y segura.
+2026-03-22 22:53:45 - [ERROR] - Error crítico durante el proceso: 'cliente'
+2026-03-22 22:53:45 - [WARNING] - Se realizó un rollback de la transacción para proteger la base de datos.
+2026-03-22 22:53:45 - [INFO] - Conexión a la base de datos cerrada limpiamente.
+--------------------------------------------------
+2026-03-22 22:56:57 - [INFO] - Iniciando extracción y transformación de datos...
+2026-03-22 22:56:57 - [INFO] - Columnas originales detectadas: ['cliente,producto,precio,region,fecha']
+2026-03-22 22:56:57 - [INFO] - Archivo CSV listo. Filas: 40. Columnas finales: ['cliente,producto,precio,region,fecha']
+2026-03-22 23:22:12 - [INFO] - Iniciando extracción y transformación de datos...
+2026-03-22 23:22:12 - [INFO] - Columnas originales detectadas: ['cliente', 'producto', 'precio', 'region', 'fecha']
+2026-03-22 23:22:12 - [INFO] - Archivo CSV listo. Filas: 40. Columnas finales: ['cliente', 'producto', 'precio', 'region', 'fecha']
+2026-03-22 23:22:12 - [INFO] - Conexión a PostgreSQL exitosa y segura.
+2026-03-22 23:22:12 - [INFO] - Datos cargados correctamente a la base de datos sin duplicados.
+2026-03-22 23:22:12 - [INFO] - Conexión a la base de datos cerrada limpiamente.
+--------------------------------------------------

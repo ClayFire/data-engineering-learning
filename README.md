@@ -92,3 +92,5 @@ DB_PASSWORD=tu_contraseña
 Para ejecutar el proceso completo, tienes dos opciones:
 * **Automatizado (Windows):** Haz doble clic en el archivo `run_pipeline.bat`.
 * **Manual (Terminal):** Ejecuta `python python/cargar_ventas_postgres.py`.
+
+---

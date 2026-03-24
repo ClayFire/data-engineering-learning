@@ -24,3 +24,10 @@
 2026-03-22 23:22:12 - [INFO] - Datos cargados correctamente a la base de datos sin duplicados.
 2026-03-22 23:22:12 - [INFO] - Conexión a la base de datos cerrada limpiamente.
 --------------------------------------------------
+2026-03-23 23:08:17 - [INFO] - Iniciando extracción y transformación de datos...
+2026-03-23 23:08:17 - [WARNING] - ESCUDO ACTIVO: Se bloquearon y eliminaron 1 fila(s) por tener un precio inválido (negativo o cero).
+2026-03-23 23:08:17 - [INFO] - Archivo CSV listo para cargar a la base de datos. Filas válidas: 40
+2026-03-23 23:08:18 - [INFO] - Conexión a PostgreSQL exitosa y segura.
+2026-03-23 23:08:18 - [INFO] - Datos cargados correctamente a la base de datos sin duplicados.
+2026-03-23 23:08:18 - [INFO] - Conexión a la base de datos cerrada limpiamente.
+--------------------------------------------------
